@@ -21,3 +21,5 @@ Write a program to find a scheme for $$n$$ and $$S$$ such that the new number fo
 Output the new positive integer. ($$n$$ does not exceed $$240$$ digits). 
 
 No error checking is required for the input data.
+
+Note: If all numbers are deleted, the output should be $$0$$.
