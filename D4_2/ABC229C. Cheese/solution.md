@@ -153,8 +153,3 @@ $$
 The answer can be much larger than a 32-bit integer. For example, both $A_i$ and the total number of selected grams can be large, so the result can be on the order of $10^{17}$.
 
 Therefore, all quantities involved in multiplication and accumulation should be stored in `long long`.
-3. **Using `int` for the answer.**  
-   The multiplication $A_i\cdot B_i$ and the accumulated answer require `long long`.
-
-4. **Assuming that exactly $W$ grams must be used.**  
-   The pizza may contain fewer than $W$ grams if there is not enough cheese in total.
