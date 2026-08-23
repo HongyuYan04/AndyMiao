@@ -153,59 +153,6 @@ $$
 The answer can be much larger than a 32-bit integer. For example, both $A_i$ and the total number of selected grams can be large, so the result can be on the order of $10^{17}$.
 
 Therefore, all quantities involved in multiplication and accumulation should be stored in `long long`.
-
-## 7. C++17 Implementation
-
-```cpp
-#include <algorithm>
-#include <iostream>
-#include <utility>
-#include <vector>
-
-using namespace std;
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-
-    int n;
-    long long w;
-    cin >> n >> w;
-
-    vector<pair<long long, long long>> cheese(n);
-    for (auto &[deliciousness, amount] : cheese) {
-        cin >> deliciousness >> amount;
-    }
-
-    sort(cheese.begin(), cheese.end(),
-         [](const auto &lhs, const auto &rhs) {
-             return lhs.first > rhs.first;
-         });
-
-    long long answer = 0;
-    long long remaining = w;
-
-    for (const auto &[deliciousness, amount] : cheese) {
-        if (remaining == 0) break;
-
-        long long take = min(amount, remaining);
-        answer += deliciousness * take;
-        remaining -= take;
-    }
-
-    cout << answer << '\n';
-    return 0;
-}
-```
-
-## 8. Common Mistakes
-
-1. **Sorting in ascending order.**  
-   We must process cheese with the greatest deliciousness per gram first.
-
-2. **Taking all $B_i$ grams without checking the remaining capacity.**  
-   The correct amount is `min(B_i, remaining)`.
-
 3. **Using `int` for the answer.**  
    The multiplication $A_i\cdot B_i$ and the accumulated answer require `long long`.
 
