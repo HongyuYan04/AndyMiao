@@ -1,4 +1,4 @@
-# C. Competitive Fishing
+# [C. Competitive Fishing](https://codeforces.com/contest/2042/problem/C)
 
 **Time limit per test:** 2 seconds  
 **Memory limit per test:** 512 megabytes
