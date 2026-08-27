@@ -15,3 +15,9 @@ If we place a barrier between the $$i$$-th fish and the $$(i + 1)$$-th fish, it 
 The result is that the group number for each fish from the $$(i + 1)$$-th fish to the $$n$$-th fish increases by $$1$$, and correspondingly, Bob's score increases by $$X$$, Alice's score increases by $$Y$$.
 
 - $$X$$ represents the number of '1' characters in range $$\displaystyle S_{i \sim n - 1}$$.
+
+- $$Y$$ represents the number of '0' characters in range $$\displaystyle S_{i \sim n - 1}$$.
+
+And, such an operation will increase $$F$$ by $$X - Y$$.
+
+If we want to know whether dividing into $$K$$ groups can meet the requirements, then, **greedily**, we must put the baffle in the $$K - 1$$ gaps with the largest $$X - Y$$. If a baffle is placed elsewhere, then using this baffle to fill these $$K - 1$$ gaps will **not result in a disadvantage** in contribution to $$F$$.
