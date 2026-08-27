@@ -26,4 +26,4 @@ Consider sorting in descending order of $$\displaystyle X - Y$$, then selecting 
 
 The contribution of placing a baffle at each position can be optimized in terms of time complexity using something like a suffix sum.
 
-The time complexity is $$\displaystyle \mathcal{O}(\Sigma n \log \sum n)$$.
+The time complexity is $$\displaystyle \mathcal{O}(n\logn)$$.
