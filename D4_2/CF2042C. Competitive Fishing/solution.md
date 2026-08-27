@@ -20,4 +20,4 @@ The result is that the group number for each fish from the $$(i + 1)$$-th fish t
 
 And, such an operation will increase $$F$$ by $$X - Y$$.
 
-If we want to know whether dividing into $$K$$ groups can meet the requirements, then, **greedily**, we must put the baffle in the $$K - 1$$ gaps with the largest $$X - Y$$. If a baffle is placed elsewhere, then using this baffle to fill these $$K - 1$$ gaps will **not result in a disadvantage** in contribution to $$F$$.
+If we want to know whether dividing into $$T$$ groups can meet the requirements, then, **greedily**, we must put the baffle in the $$T - 1$$ gaps with the largest $$X - Y$$. If a baffle is placed elsewhere, then using this baffle to fill these $$T - 1$$ gaps will **not result in a disadvantage** in contribution to $$F$$.
