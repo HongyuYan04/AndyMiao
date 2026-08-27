@@ -11,3 +11,7 @@ Then, consider one operation's contribution to enhance $$F$$ :
 Increasing the number of groups each time is equivalent to placing a barrier between two fish.
 
 If we place a barrier between the $$i$$-th fish and the $$(i + 1)$$-th fish, it will only affect the group numbers of fish $$i + 1 \sim n$$.
+
+The result is that the group number for each fish from the $$(i + 1)$$-th fish to the $$n$$-th fish increases by $$1$$, and correspondingly, Bob's score increases by $$X$$, Alice's score increases by $$Y$$.
+
+- $$X$$ represents the number of '1' characters in range $$\displaystyle S_{i \sim n - 1}$$.
