@@ -6,4 +6,4 @@ Let $$F$$ represent Bob's score minus Alice's score.
 
 Then, consider one operation's contribution to enhance $$F$$ : 
 
-![Uploading image.png…]()
+<img width="1403" height="668" alt="image" src="https://github.com/user-attachments/assets/03be9f57-274c-4cd4-b6ee-0c5f52586b2d" />
