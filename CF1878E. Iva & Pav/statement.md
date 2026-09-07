@@ -83,17 +83,19 @@ $$f(1, 1) = 15, f(1, 2) = 14, f(1, 3) = 0, f(1, 4) = 0, f(1, 5) = 0$$ , so $$r =
 
 The second query asks for $$f(2, r) \ge 15$$. Since such *r* doesn't exist, the answer is −1.
 
-The third query asks for *f*(4, *r*) ≥ 5. *f*(4, 4) = 42, *f*(4, 5) = 34, so *r* = 5 is the answer.
+The third query asks for $$f(4, r) \ge 5$$ .
 
-In the **second test case** *n* = 5, and the array *a* = [7, 5, 3, 1, 7].
+$$f(4, 4) = 42, f(4, 5) = 34$$ , so $$r = 5$$ is the answer.
 
-For the first query, *f*(1, *r*) ≥ 7.
+In the **second test case** $$n = 5$$ , and the array $$a = [7, 5, 3, 1, 7]$$ .
 
-*f*(1, 1) = 7, *f*(1, 2) = 5, *f*(1, 3) = 1, *f*(1, 4) = 1, *f*(1, 5) = 1, so the answer to this query is 1.
+For the first query, $$f(1, r) \ge 7$$.
 
-For the second query, *f*(5, *r*) ≥ 7.
+$$f(1, 1) = 7, f(1, 2) = 5, f(1, 3) = 1, f(1, 4) = 1, f(1, 5) = 1$$, so the answer to this query is $$1$$.
 
-*f*(5, 5) = 7, so the answer is 5.
+For the second query, $$f(5, r) \ge 7$$.
+
+$$f(5, 5) = 7$$, so the answer is $$5$$.
 
 For the third query, $$f(2, r) \ge 3$$ .
 
