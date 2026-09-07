@@ -13,3 +13,10 @@ Proof : As $$R$$ increases, each binary bit of $$f(L, R)$$ will only undergo one
 If we sum up each binary bit, then $$f(L, R)$$ will naturally be monotonic and non-increasing.
 
 What we need to do is find the position of the last $$1$$ in the sequence $$111111....1000....0$$.
+
+
+---
+
+# Observation $2$
+
+For every query, consider binary search.
