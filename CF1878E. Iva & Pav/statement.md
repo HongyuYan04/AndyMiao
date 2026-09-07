@@ -13,29 +13,29 @@ Let's define $$f(l, r) = a_l$$ &amp; $$a_{l + 1}$$ &amp; $$\cdots$$ &amp; $$a_r$
 
 Iva also gave Pav $$q$$ queries.
 
-Each query consists of $$2$$ numbers, $$k$$ and $$l$$, and she wants Pav to find the largest index $$r$$ (*l* ≤ *r* ≤ *n*), such that *f*(*l*, *r*) ≥ *k*.
+Each query consists of $$2$$ numbers, $$k$$ and $$l$$, and she wants Pav to find the largest index $$r$$ ($$l \le r \le n$$), such that $$f(l, r) \ge k$$.
 
 Pav wants to solve this problem fast because he doesn't want to upset Iva. He needs your help.
 
 ## Input
 
-The first line contains a single integer *t* (1 ≤ *t* ≤ 10<sup>4</sup>) — the number of test cases.
+The first line contains a single integer $$t (1 \le t \le 10^4)$$ — the number of test cases.
 
-The first line of each test case contains a single integer *n* (1 ≤ *n* ≤ 2 · 10<sup>5</sup>) — the length of array *a*.
+The first line of each test case contains a single integer $$n (1 \le n \le 2 \cdot 10^5)$$ — the length of array $$a$$.
 
-The second line of each test case contains *n* integers a<sub>1</sub>, a<sub>2</sub>, …, a<sub>n</sub> (1 ≤ a<sub>i</sub> ≤ 10<sup>9</sup>) — the elements of array *a*.
+The second line of each test case contains $$n$$ integers $$a_1$$, $$a_2$$, $$\cdots$$, $$a_n$$ ($$1 \le a_i \le 10^9$$) — the elements of array $$a$$.
 
-The third line of each test case contains a single integer *q* (1 ≤ *q* ≤ 10<sup>5</sup>) — the number of queries Iva gave Pav.
+The third line of each test case contains a single integer $$q (1 \le q \le 10^5)$$ — the number of queries Iva gave Pav.
 
-The next *q* lines of each test case contains two numbers, *l* and *k* (1 ≤ *l* ≤ *n*, 1 ≤ *k* ≤ 10<sup>9</sup>) — the left bound for the segment, and the integer *k* described in statement.
+The next $$q$$ lines of each test case contains two numbers, $$l$$ and $$k (1 \le l \le n, 1 \le k \le 10^9)$$ — the left bound for the segment, and the integer $$k$$ described in statement.
 
-It is guaranteed that the sum of *n* over all test cases does not exceed 2 · 10<sup>5</sup>. Also, it is guaranteed that the sum of *q* over all test cases does not exceed 2 · 10<sup>5</sup>.
+It is guaranteed that the sum of $$n$$ over all test cases does not exceed $$2 \cdot 10^5$$. Also, it is guaranteed that the sum of $$q$$ over all test cases does not exceed  $$2 \cdot 10^5$$.
 
 ## Output
 
-For each query output maximal index *r* (*l* ≤ *r* ≤ *n*) such that a<sub>l</sub> &amp; a<sub>l+1</sub> &amp; … &amp; a<sub>r</sub> ≥ *k*.
+For each query output maximal index $$r (l \le r \le n)$$ such that $$a_l$$ &amp; $$a_{l + 1}$$ &amp; $$\cdots$$ &amp; $$a_r \ge k$$
 
-If such *r* doesn't exist, output −1.
+If such $$r$$ doesn't exist, output `−1`.
 
 ## Example
 
@@ -75,13 +75,13 @@ If such *r* doesn't exist, output −1.
 
 ## Note
 
-In the **first test case** *n* = 5, and the array *a* = [15, 14, 17, 42, 34]
+In the **first test case** $$n = 5$$ , and the array $$a = [15, 14, 17, 42, 34]$$.
 
-The first query asks for the biggest index *r* such that the *f*(1, *r*) ≥ 7.
+The first query asks for the biggest index $$r$$ such that the $$f(1, r) \ge 7$$.
 
-*f*(1, 1) = 15, *f*(1, 2) = 14, *f*(1, 3) = 0, *f*(1, 4) = 0, *f*(1, 5) = 0, so *r* = 2 is the answer.
+$$f(1, 1) = 15, f(1, 2) = 14, f(1, 3) = 0, f(1, 4) = 0, f(1, 5) = 0$$ , so $$r = 2$$ is the answer.
 
-The second query asks for *f*(2, *r*) ≥ 15. Since such *r* doesn't exist, the answer is −1.
+The second query asks for $$f(2, r) \ge 15$$. Since such *r* doesn't exist, the answer is −1.
 
 The third query asks for *f*(4, *r*) ≥ 5. *f*(4, 4) = 42, *f*(4, 5) = 34, so *r* = 5 is the answer.
 
@@ -95,6 +95,6 @@ For the second query, *f*(5, *r*) ≥ 7.
 
 *f*(5, 5) = 7, so the answer is 5.
 
-For the third query, *f*(2, *r*) ≥ 3.
+For the third query, $$f(2, r) \ge 3$$ .
 
-*f*(2, 2) = 5, *f*(2, 3) = 1, *f*(2, 4) = 1, *f*(2, 5) = 1, so the answer is 2.
+$$f(2, 2) = 5, f(2, 3) = 1, f(2, 4) = 1, f(2, 5) = 1$$ , so the answer is $$2$$.
