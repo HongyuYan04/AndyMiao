@@ -56,7 +56,7 @@ For the calculation of $$f(L, R)$$, consider the following code :
 ```cpp
 int calc(int l, int r) {
     int res = 0;
-    for (int bit = 0; bit < 30; bit++) {
+    for (int bit = 0; bit < LOGA; bit++) {
         if (pre[r][bit] - pre[l - 1][bit] == r - l + 1) {
             res |= 1 << bit;
         }
