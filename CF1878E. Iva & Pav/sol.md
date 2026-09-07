@@ -43,4 +43,26 @@ Two methods can be considered here:
 
 # Calculate bit-by-bit
 
+Consider a two-dimensional array like this :
 
+```cpp
+int pre[MAXN][LOGN];
+```
+
+The meaning of $$pre_{i, j}$$ is : how many elements in $$a_{1 \sim i}$$ have a j-th binary bit that is $$1$$.
+
+For the calculation of $$f(L, R)$$, consider the following code :
+
+```cpp
+int calc(int l, int r) {
+    int res = 0;
+    for (int bit = 0; bit < 30; bit++) {
+        if (pre[r][bit] - pre[l - 1][bit] == r - l + 1) {
+            res |= 1 << bit;
+        }
+    }
+    return res;
+}
+```
+
+The time complexity of the function is $$\mathcal{O}(\log A)$$, $$A$$ means $$\max(a_i)$$.
