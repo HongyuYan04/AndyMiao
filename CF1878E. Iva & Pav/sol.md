@@ -26,3 +26,15 @@ For every query, consider **binary search**.
 If $$f(L, mid) \ge k$$, the answer will be within this range : $$[mid, n]$$, then we need update : $$L \rightarrow mid$$.
 
 If $$f(L, mid) < k$$, the answer will be within this range : $$[L, mid - 1]$$, then we need update :  $$R \rightarrow mid - 1$$.
+
+---
+
+# Observation $3$
+
+To solve for $$f(L, R)$$, we need to design an efficient computational method.
+
+Two methods can be considered here: 
+
+- consider the result of each binary bit separately and then combine them bit by bit
+
+- use a sparse table for calculation.
