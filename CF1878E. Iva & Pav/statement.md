@@ -1,61 +1,45 @@
 # E. Iva & Pav
 
-- 时间限制：5 秒
-- 内存限制：256 MB
+time limit per test: 5 seconds  
+memory limit per test: 256 megabytes
 
-## 题目描述
+*Iva and Pav are a famous Serbian competitive programming couple. In Serbia, they call Pav "papuca" and that's why he will make all of Iva's wishes come true.*
 
-Iva 和 Pav 是塞尔维亚一对著名的算法竞赛情侣。在塞尔维亚，大家称 Pav 为 “papuca”，因此他会满足 Iva 的所有愿望。
+Iva gave Pav an array $a$ of $n$ elements.
 
-Iva 给了 Pav 一个包含 $n$ 个元素的数组 $a$。
+Let's define $f(l,r) = a_l \mathbin{\&} a_{l+1} \mathbin{\&} \ldots \mathbin{\&} a_r$ (here $\&$ denotes the bitwise AND operation).
 
-定义：
+**Note that $f(l,r)$ is not defined when $l > r$.**
 
-$$
-f(l,r)=a_l \mathbin{\&} a_{l+1} \mathbin{\&} \cdots \mathbin{\&} a_r
-$$
+Iva also gave Pav $q$ queries.
 
-其中，$\&$ 表示按位与运算。
+Each query consists of 2 numbers, $k$ and $l$, and she wants Pav to find the largest index $r$ ($l \le r \le n$), such that $f(l,r) \ge k$.
 
-**注意，当 $l>r$ 时，$f(l,r)$ 没有定义。**
+Pav wants to solve this problem fast because he doesn't want to upset Iva. He needs your help.
 
-Iva 还给了 Pav $q$ 次询问。
+## Input
 
-每次询问给出两个整数 $l$ 和 $k$，要求 Pav 找到最大的下标 $r$，满足：
+The first line contains a single integer $t$ ($1 \le t \le 10^4$) — the number of test cases.
 
-$$
-l\le r\le n,\qquad f(l,r)\ge k
-$$
+The first line of each test case contains a single integer $n$ ($1 \le n \le 2 \cdot 10^5$) — the length of array $a$.
 
-Pav 想尽快解决这个问题，因为他不想让 Iva 不高兴。他需要你的帮助。
+The second line of each test case contains $n$ integers $a_1, a_2, \ldots, a_n$ ($1 \le a_i \le 10^9$) — the elements of array $a$.
 
-## 输入格式
+The third line of each test case contains a single integer $q$ ($1 \le q \le 10^5$) — the number of queries Iva gave Pav.
 
-第一行包含一个整数 $t$（$1\le t\le 10^4$），表示测试用例的数量。
+The next $q$ lines of each test case contains two numbers, $l$ and $k$ ($1 \le l \le n$, $1 \le k \le 10^9$) — the left bound for the segment, and the integer $k$ described in statement.
 
-对于每个测试用例：
+It is guaranteed that the sum of $n$ over all test cases does not exceed $2 \cdot 10^5$. Also, it is guaranteed that the sum of $q$ over all test cases does not exceed $2 \cdot 10^5$.
 
-- 第一行包含一个整数 $n$（$1\le n\le 2\cdot 10^5$），表示数组 $a$ 的长度。
-- 第二行包含 $n$ 个整数 $a_1,a_2,\ldots,a_n$（$1\le a_i\le 10^9$），表示数组 $a$ 的元素。
-- 第三行包含一个整数 $q$（$1\le q\le 10^5$），表示 Iva 给 Pav 的询问数量。
-- 接下来 $q$ 行，每行包含两个整数 $l$ 和 $k$（$1\le l\le n$，$1\le k\le 10^9$），分别表示区间左端点和题目中所述的整数 $k$。
+## Output
 
-保证所有测试用例的 $n$ 之和不超过 $2\cdot 10^5$，且所有测试用例的 $q$ 之和不超过 $2\cdot 10^5$。
+For each query output maximal index $r$ ($l \le r \le n$) such that $a_l \mathbin{\&} a_{l+1} \mathbin{\&} \ldots \mathbin{\&} a_r \ge k$.
 
-## 输出格式
+If such $r$ doesn't exist, output $-1$.
 
-对于每次询问，输出满足以下条件的最大下标 $r$：
+## Example
 
-$$
-l\le r\le n,\qquad
-a_l \mathbin{\&} a_{l+1} \mathbin{\&} \cdots \mathbin{\&} a_r\ge k
-$$
-
-如果不存在这样的 $r$，输出 $-1$。
-
-## 样例
-
-### 输入
+### input
 
 ```text
 3
@@ -81,7 +65,7 @@ $$
 5 7
 ```
 
-### 输出
+### output
 
 ```text
 2 -1 5
@@ -89,54 +73,28 @@ $$
 2 6 -1 5
 ```
 
-## 样例解释
+## Note
 
-在第一个测试用例中，$n=5$，数组为 $a=[15,14,17,42,34]$。
+In the **first test case** $n = 5$, and the array $a = [15, 14, 17, 42, 34]$
 
-第一次询问要求找到满足 $f(1,r)\ge 7$ 的最大下标 $r$。
+The first query asks for the biggest index $r$ such that the $f(1,r) \ge 7$.
 
-由于：
+$f(1,1) = 15$, $f(1,2) = 14$, $f(1,3) = 0$, $f(1,4) = 0$, $f(1,5) = 0$, so $r = 2$ is the answer.
 
-$$
-f(1,1)=15,\quad f(1,2)=14,\quad f(1,3)=0,\quad
-f(1,4)=0,\quad f(1,5)=0
-$$
+The second query asks for $f(2,r) \ge 15$. Since such $r$ doesn't exist, the answer is $-1$.
 
-因此答案为 $r=2$。
+The third query asks for $f(4,r) \ge 5$. $f(4,4) = 42$, $f(4,5) = 34$, so $r = 5$ is the answer.
 
-第二次询问要求 $f(2,r)\ge 15$。由于不存在这样的 $r$，答案为 $-1$。
+In the **second test case** $n = 5$, and the array $a = [7, 5, 3, 1, 7]$.
 
-第三次询问要求 $f(4,r)\ge 5$。由于：
+For the first query, $f(1,r) \ge 7$.
 
-$$
-f(4,4)=42,\qquad f(4,5)=34
-$$
+$f(1,1) = 7$, $f(1,2) = 5$, $f(1,3) = 1$, $f(1,4) = 1$, $f(1,5) = 1$, so the answer to this query is $1$.
 
-因此答案为 $r=5$。
+For the second query, $f(5,r) \ge 7$.
 
-在第二个测试用例中，$n=5$，数组为 $a=[7,5,3,1,7]$。
+$f(5,5) = 7$, so the answer is $5$.
 
-第一次询问要求 $f(1,r)\ge 7$。
+For the third query, $f(2,r) \ge 3$.
 
-由于：
-
-$$
-f(1,1)=7,\quad f(1,2)=5,\quad f(1,3)=1,\quad
-f(1,4)=1,\quad f(1,5)=1
-$$
-
-因此这次询问的答案为 $1$。
-
-第二次询问要求 $f(5,r)\ge 7$。
-
-由于 $f(5,5)=7$，因此答案为 $5$。
-
-第三次询问要求 $f(2,r)\ge 3$。
-
-由于：
-
-$$
-f(2,2)=5,\quad f(2,3)=1,\quad f(2,4)=1,\quad f(2,5)=1
-$$
-
-因此答案为 $2$。
+$f(2,2) = 5$, $f(2,3) = 1$, $f(2,4) = 1$, $f(2,5) = 1$, so the answer is $2$.
