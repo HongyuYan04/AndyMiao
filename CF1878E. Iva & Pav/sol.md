@@ -19,4 +19,10 @@ What we need to do is find the position of the last $$1$$ in the sequence $$1111
 
 # Observation $2$
 
-For every query, consider binary search.
+For every query, consider **binary search**.
+
+<img width="1446" height="722" alt="image" src="https://github.com/user-attachments/assets/2a89c1d5-7a97-4e7b-8cf4-a732c3828bdb" />
+
+If $$f(L, mid) \ge k$$, the answer will be within this range : $$[mid, n]$$, then we need update : $$L \rightarrow mid$$.
+
+If $$f(L, mid) < k$$, the answer will be within this range : $$[L, mid - 1]$$, then we need update :  $$R \rightarrow mid - 1$$.
