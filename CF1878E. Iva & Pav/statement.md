@@ -9,7 +9,7 @@ Iva gave Pav an array $a$ of $n$ elements.
 
 Let's define 
 
-$f(l,r) = a_l \mathbin{\&} a_{l+1} \mathbin{\&} \cdots \mathbin{\&} a_r$
+$f(l,r) = a_l \band a_{l+1} $
 
 (here $\&$ denotes the bitwise AND operation).
 
