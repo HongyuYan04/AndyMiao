@@ -46,7 +46,7 @@ Two methods can be considered here:
 Consider a two-dimensional array like this :
 
 ```cpp
-int pre[MAXN][LOGN];
+int pre[MAXN][LOGA];
 ```
 
 The meaning of $$pre_{i, j}$$ is : how many elements in $$a_{1 \sim i}$$ have a j-th binary bit that is $$1$$.
