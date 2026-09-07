@@ -87,3 +87,15 @@ The time complexity of preprocessing is $$\mathcal{O}(n \log A)$$.
 For every query, the time complexity is $$\mathcal{O}(\log n \cdot \log A)$$.
 
 The overall time complexity is: $$\mathcal{O}(n \log A + q \log n \cdot \log A)$$.
+
+---
+
+## Sparse Table
+
+
+
+
+---
+
+## Solving problem by using sparse table
+
