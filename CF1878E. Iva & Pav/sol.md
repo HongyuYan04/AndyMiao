@@ -38,3 +38,9 @@ Two methods can be considered here:
 - consider the result of each binary bit separately and then combine them bit by bit
 
 - use a sparse table for calculation.
+
+--- 
+
+# Calculate bit-by-bit
+
+
