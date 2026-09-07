@@ -66,3 +66,24 @@ int calc(int l, int r) {
 ```
 
 The time complexity of the function is $$\mathcal{O}(\log A)$$, $$A$$ means $$\max(a_i)$$.
+
+For the preprocessing of the pre array, consider using a method similar to **prefix sums**.
+
+```cpp
+void init() {
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j < LOGA; j++) {
+            pre[i][j] = pre[i - 1][j];
+            if ((a[i] >> j) & 1) {
+                pre[i][j]++;
+            }
+        }
+    }
+}
+```
+
+The time complexity of preprocessing is $$\mathcal{O}(n \log A)$$.
+
+For every query, the time complexity is $$\mathcal{O}(\log n \log A)$$.
+
+The overall time complexity is: $$\mathcal{O}(n \log A + q \log n \log A)$$.
