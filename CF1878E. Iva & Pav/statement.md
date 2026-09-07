@@ -5,15 +5,15 @@ memory limit per test: 256 megabytes
 
 *Iva and Pav are a famous Serbian competitive programming couple. In Serbia, they call Pav "papuca" and that's why he will make all of Iva's wishes come true.*
 
-Iva gave Pav an array *a* of *n* elements.
+Iva gave Pav an array $$a$$ of $$n$$ elements.
 
-Let's define $$f(l, r)$$ = a<sub>l</sub> &amp; a<sub>l+1</sub> &amp; … &amp; a<sub>r</sub> (here &amp; denotes the bitwise AND operation).
+Let's define $$f(l, r) = a_l$$ &amp; $$a_{l + 1}$$ &amp; $$\cdots$$ &amp; $$a_r$$ (here &amp; denotes the bitwise AND operation).
 
-**Note that *f*(*l*, *r*) is not defined when *l* > *r*.**
+**Note that $$f(l, r)$$ is not defined when $$l > r$$.**
 
-Iva also gave Pav *q* queries.
+Iva also gave Pav $$q$$ queries.
 
-Each query consists of 2 numbers, *k* and *l*, and she wants Pav to find the largest index *r* (*l* ≤ *r* ≤ *n*), such that *f*(*l*, *r*) ≥ *k*.
+Each query consists of $$2$$ numbers, $$k$$ and $$l$$, and she wants Pav to find the largest index $$r$$ (*l* ≤ *r* ≤ *n*), such that *f*(*l*, *r*) ≥ *k*.
 
 Pav wants to solve this problem fast because he doesn't want to upset Iva. He needs your help.
 
