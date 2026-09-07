@@ -7,7 +7,7 @@ memory limit per test: 256 megabytes
 
 Iva gave Pav an array $a$ of $n$ elements.
 
-Let's define $f(l,r) = a_l \mathbin{\&} a_{l+1} \mathbin{\&} \ldots \mathbin{\&} a_r$ (here $\&$ denotes the bitwise AND operation).
+Let's define $$f(l,r) = a_l \mathbin{\&} a_{l+1} \mathbin{\&} \ldots \mathbin{\&} a_r$$ (here $$\&$$ denotes the bitwise AND operation).
 
 **Note that $f(l,r)$ is not defined when $l > r$.**
 
