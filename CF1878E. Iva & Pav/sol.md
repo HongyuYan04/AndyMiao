@@ -36,7 +36,7 @@ int bs(int L) {
     int lo = L, hi = n;
     while (lo < hi) {
         int mid = (lo + hi + 1) / 2; // ceil( (lo + hi) / 2 )
-        if (check(mid)) {
+        if (F(L, mid)) {
             lo = mid;
         } else {
             hi = mid - 1;
@@ -256,7 +256,7 @@ void init() {
     /*
 
         Note that when constructing the sparse table,
-        you must first iterate through the interval lengths;
+        consider : first iterate through the interval lengths;
         this is because information about longer intervals is updated using information from shorter intervals.
 
     */
@@ -290,8 +290,6 @@ int query(int L, int R) {
 ```
 
 A more efficient solution is: 
-
-Find two intervals of length $$\mathcal \lfloor \log_2 (R - L + 1) \rfloor$$, and merge them to obtain the answer.
 
 Let $$k = \lfloor \log_2(R-L+1) \rfloor$$.
 
