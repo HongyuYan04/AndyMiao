@@ -275,9 +275,9 @@ int query(int L, int R) {
 
 A more efficient solution is: 
 
-Find two intervals of length $$\mathcal \lfloor \log(R - L + 1) \rfloor$$, and merge them to obtain the answer.
+Find two intervals of length $$\mathcal \lfloor \log_2 (R - L + 1) \rfloor$$, and merge them to obtain the answer.
 
-Specifically, suppose $$k$$ is equal to $$\mathcal \lfloor \log(R - L + 1) \rfloor$$, 
+Specifically, suppose $$k$$ is equal to $$\mathcal \lfloor \log_2 (R - L + 1) \rfloor$$, 
 
 then the first interval is : an interval starting with $$L$$ and having a length of $$2^k$$. 
 
