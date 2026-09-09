@@ -120,11 +120,11 @@ Input is given from Standard Input in the following format:
 
 ```text
 N Q
-A_1 A_2 ... A_N
-L_1 R_1
-L_2 R_2
+A[1] A[2] ... A[N]
+L[1] R[1]
+L[2] R[2]
 ...
-L_Q R_Q
+L[Q] R[Q]
 ```
 
 - The first line contains an integer $N$ representing the number of mountains and an integer $Q$ representing the number of queries, separated by a space.
@@ -223,7 +223,88 @@ int f[MAXN][LOGN];
 
 The meaning of $$f_{i, j}$$ is : $$\displaystyle \max(A_i, A_{i + 1}, \cdots, A_{i + 2^j - 1})$$.
 
----
+Firstly, $$f_{i, 0} = a_i$$.
 
-## Solving problem by using sparse table
+If $$j \ne 0$$, $$f_{i, j} = \max(f_{i, j - 1}, f_{i + 2^{j - 1}, j - 1})$$
 
+The time complexity for preprocessing is $$\mathcal{O}(N \log N)$$.
+
+```cpp
+void init() {
+    for (int i = 1; i <= n; i++) {
+        f[i][0] = a[i];
+    }
+    /*
+
+        Note that when constructing the sparse table,
+        you must first iterate through the interval lengths;
+        this is because information about longer intervals is updated using information from shorter intervals.
+
+    */
+    for (int j = 1; (1 << j) <= n; j++) { // !!!
+        for (int i = 1; i + (1 << j) - 1 <= n; i++) {
+            f[i][j] = max(f[i][j - 1], f[i + (1 << (j - 1))][j - 1]);
+        }
+    }
+}
+```
+
+For the query, here we consider splitting the length of the query interval into binary form, 
+
+and then merging the $$\mathcal{O}(\log n)$$ intervals to calculate the answer.
+
+This processing method has a time complexity of $$\mathcal{O}(\log n)$$ for answering each query.
+
+```cpp
+int query(int L, int R) {
+    int res = -INF;
+    int len = R - L + 1;
+    for (int i = 0; len != 0; i++) {
+        if (len % 2) {
+            res = max(res, f[L][i]);
+            L += 1 << i;
+        }
+        len /= 2;
+    }
+    return res;
+}
+```
+
+A more efficient solution is: 
+
+Find two intervals of length $$\mathcal \lfloor \log(R - L + 1) \rfloor$$, and merge them to obtain the answer.
+
+Specifically, suppose $$k$$ is equal to $$\mathcal \lfloor \log(R - L + 1) \rfloor$$, 
+
+then the first interval is : an interval starting with $$L$$ and having a length of $$2^k$$. 
+
+The second interval is: an interval ending with $$R$$ and having a length of $$2^k$$.
+
+The lengths of these two intervals are both no more than $$R - L + 1$$, but when they are concatenated, the result will definitely be greater than $$R - L + 1$$.
+
+This method has a time complexity of $$\mathcal{O}(1)$$ for answering each query.
+
+Like the aforementioned method, by combining two intervals, they will have an intersection. 
+
+It is necessary to ensure that the operation satisfies the "repeated contribution" condition.
+
+For example, $$\max(X, X, Y) = \max(X, Y)$$.
+
+Common operations that satisfy the requirement of repeatable contribution include: 
+
+- range maximum value
+
+- range minimum value
+
+- range greatest common divisor
+
+- range bitwise AND
+
+- range bitwise OR.
+
+```cpp
+int query(int L, int R) {
+    int k = std::__lg(R - L + 1);
+    return std::max(f[L][k], f[R - (1 << k) + 1][k]);
+}
+```
