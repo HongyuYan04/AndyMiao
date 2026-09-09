@@ -92,7 +92,162 @@ The overall time complexity is: $$\mathcal{O}(n \log A + q \log n \cdot \log A)$
 
 ## Sparse Table
 
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+\begin{document}
+
+\section*{E - Mountain Height Survey}
+
+Time Limit: 2 sec / Memory Limit: 1024 MiB
+
+Score: 433 pts
+
+\subsection*{Problem Statement}
+
+Takahashi works as a mountain guide and manages information about
+$N$ mountains in a mountain range. The mountains are numbered from
+$1$ to $N$, and the elevation of the $i$-th mountain is $A_i$ meters
+($1 \le i \le N$).
+
+Takahashi has received $Q$ queries from tourists.
+The $j$-th query ($1 \le j \le Q$) specifies the mountains from
+the $L_j$-th to the $R_j$-th, and asks for the highest elevation
+among them.
+
+For each query, find the maximum elevation among the mountains
+in the specified range.
+
+\subsection*{Constraints}
+
+\begin{itemize}
+    \item $1 \le N \le 10^5$
+    \item $1 \le Q \le 10^5$
+    \item $1 \le A_i \le 10^9 \quad (1 \le i \le N)$
+    \item $1 \le L_j \le R_j \le N \quad (1 \le j \le Q)$
+    \item All inputs are integers.
+\end{itemize}
+
+\subsection*{Input}
+
+Input is given from Standard Input in the following format:
+\[
+\begin{array}{llll}
+N & Q \\
+A_1 & A_2 & \cdots & A_N \\
+L_1 & R_1 \\
+L_2 & R_2 \\
+\vdots \\
+L_Q & R_Q
+\end{array}
+\]
+
+\begin{itemize}
+    \item The first line contains an integer $N$ representing
+    the number of mountains and an integer $Q$ representing
+    the number of queries, separated by a space.
+
+    \item The second line contains integers
+    $A_1, A_2, \ldots, A_N$ representing the elevations of
+    each mountain, separated by spaces.
+    \begin{itemize}
+        \item $A_i$ represents the elevation (in meters)
+        of the $i$-th mountain.
+    \end{itemize}
+
+    \item In the following $Q$ lines, the $j$-th line
+    ($1 \le j \le Q$, which is the $(2+j)$-th line of
+    the entire input) contains the left endpoint $L_j$
+    and the right endpoint $R_j$ of the range specified
+    by the $j$-th query, separated by a space.
+\end{itemize}
+
+\subsection*{Output}
+
+Output $Q$ lines. The $j$-th line ($1 \le j \le Q$)
+should contain the answer to the $j$-th query, that is,
+the maximum elevation among the mountains from the
+$L_j$-th to the $R_j$-th.
+
+\subsection*{Sample Input 1}
+
+\begin{verbatim}
+5 3
+100 250 180 320 150
+1 3
+2 5
+4 4
+\end{verbatim}
+
+\subsection*{Sample Output 1}
+
+\begin{verbatim}
+250
+320
+320
+\end{verbatim}
+
+\subsection*{Sample Input 2}
+
+\begin{verbatim}
+8 5
+1500 2300 1800 3776 2500 1200 2800 1900
+1 8
+3 6
+1 4
+5 8
+2 2
+\end{verbatim}
+
+\subsection*{Sample Output 2}
+
+\begin{verbatim}
+3776
+3776
+3776
+2800
+2300
+\end{verbatim}
+
+\subsection*{Sample Input 3}
+
+\begin{verbatim}
+15 10
+500 1200 800 3500 2200 1800 4200 900 3100 2700 1500 4800 2000 3300 1100
+1 15
+1 7
+7 12
+10 15
+3 5
+6 10
+12 12
+1 1
+8 14
+5 9
+\end{verbatim}
+
+\subsection*{Sample Output 3}
+
+\begin{verbatim}
+4800
+4200
+4800
+4800
+3500
+4200
+4800
+500
+4800
+4200
+\end{verbatim}
+
+\end{document}
 
 
 ---
