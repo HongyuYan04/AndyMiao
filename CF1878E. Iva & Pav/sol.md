@@ -90,15 +90,15 @@ The overall time complexity is: $$\mathcal{O}(n \log A + q \log n \cdot \log A)$
 
 ---
 
-## Sparse Table
+# Sparse Table
 
-# E - Mountain Height Survey
+## [E - Mountain Height Survey](https://atcoder.jp/contests/awc0005/tasks/awc0005_e)
 
 - **Time Limit:** 2 sec
 - **Memory Limit:** 1024 MiB
 - **Score:** 433 pts
 
-## Problem Statement
+### Problem Statement
 
 Takahashi works as a mountain guide and manages information about $N$ mountains in a mountain range. The mountains are numbered from $1$ to $N$, and the elevation of the $i$-th mountain is $A_i$ meters ($1 \le i \le N$).
 
@@ -106,7 +106,7 @@ Takahashi has received $Q$ queries from tourists. The $j$-th query ($1 \le j \le
 
 For each query, find the maximum elevation among the mountains in the specified range.
 
-## Constraints
+### Constraints
 
 - $1 \le N \le 10^5$
 - $1 \le Q \le 10^5$
@@ -114,7 +114,7 @@ For each query, find the maximum elevation among the mountains in the specified 
 - $1 \le L_j \le R_j \le N$ ($1 \le j \le Q$)
 - All inputs are integers.
 
-## Input
+### Input
 
 Input is given from Standard Input in the following format:
 
@@ -131,11 +131,11 @@ L_Q R_Q
 - The second line contains integers $A_1, A_2, \ldots, A_N$ representing the elevations of each mountain, separated by spaces. Here, $A_i$ represents the elevation (in meters) of the $i$-th mountain.
 - In the following $Q$ lines, the $j$-th line ($1 \le j \le Q$, which is the $(2+j)$-th line of the entire input) contains the left endpoint $L_j$ and the right endpoint $R_j$ of the range specified by the $j$-th query, separated by a space.
 
-## Output
+### Output
 
 Output $Q$ lines. The $j$-th line ($1 \le j \le Q$) should contain the answer to the $j$-th query, that is, the maximum elevation among the mountains from the $L_j$-th to the $R_j$-th.
 
-## Sample Input 1
+### Sample Input 1
 
 ```text
 5 3
@@ -145,7 +145,7 @@ Output $Q$ lines. The $j$-th line ($1 \le j \le Q$) should contain the answer to
 4 4
 ```
 
-## Sample Output 1
+### Sample Output 1
 
 ```text
 250
@@ -153,7 +153,7 @@ Output $Q$ lines. The $j$-th line ($1 \le j \le Q$) should contain the answer to
 320
 ```
 
-## Sample Input 2
+### Sample Input 2
 
 ```text
 8 5
@@ -165,7 +165,7 @@ Output $Q$ lines. The $j$-th line ($1 \le j \le Q$) should contain the answer to
 2 2
 ```
 
-## Sample Output 2
+### Sample Output 2
 
 ```text
 3776
@@ -175,7 +175,7 @@ Output $Q$ lines. The $j$-th line ($1 \le j \le Q$) should contain the answer to
 2300
 ```
 
-## Sample Input 3
+### Sample Input 3
 
 ```text
 15 10
@@ -192,7 +192,7 @@ Output $Q$ lines. The $j$-th line ($1 \le j \le Q$) should contain the answer to
 5 9
 ```
 
-## Sample Output 3
+### Sample Output 3
 
 ```text
 4800
@@ -206,6 +206,22 @@ Output $Q$ lines. The $j$-th line ($1 \le j \le Q$) should contain the answer to
 4800
 4200
 ```
+
+---
+
+The aforementioned problem can be solved using a **Sparse Table**. 
+
+The time complexity for preprocessing is $$\mathcal{O}(N \log N)$$, and the time complexity for each range maximum/minimum values query is $$\mathcal{O}(1)$$.
+
+- The range minimum/maximum query problem is commonly represented by the abbreviation RMQ.
+
+Consider a two-dimensional array like this :
+
+```cpp
+int f[MAXN][LOGN];
+```
+
+The meaning of $$f_{i, j}$$ is : $$\displaystyle \max(A_i, A_{i + 1}, \cdots, A_{i + 2^j - 1})$$.
 
 ---
 
