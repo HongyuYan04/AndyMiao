@@ -20,7 +20,7 @@ Thus, for a fixed $$L$$, $$f(L, R)$$ is **non-increasing** as $$R$$ increases.
 
 For every query, consider **binary search**.
 
-<img width="1446" height="722" alt="image" src="https://github.com/user-attachments/assets/2a89c1d5-7a97-4e7b-8cf4-a732c3828bdb" />
+<img width="1467" height="715" alt="image" src="https://github.com/user-attachments/assets/012064c4-3174-4bed-868f-18d9fbc1999c" />
 
 Let $$L$$ be the fixed left endpoint of the query, and let $$[lo, hi]$$ be the current search range for the answer.
 
