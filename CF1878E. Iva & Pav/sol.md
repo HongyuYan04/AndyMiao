@@ -22,6 +22,10 @@ For every query, consider **binary search**.
 
 <img width="1446" height="722" alt="image" src="https://github.com/user-attachments/assets/2a89c1d5-7a97-4e7b-8cf4-a732c3828bdb" />
 
+Assume that the answer must lie within the range $$[L, R]$$.
+
+Then we check whether $$f(L, mid)$$ is greater than or equal to $$k$$.
+
 If $$f(L, mid) \ge k$$, the answer will be within this range : $$[mid, n]$$, then we need update : $$L \rightarrow mid$$.
 
 If $$f(L, mid) < k$$, the answer will be within this range : $$[L, mid - 1]$$, then we need update :  $$R \rightarrow mid - 1$$.
