@@ -1,6 +1,6 @@
 # Observation $1$
 
-If $$L$$ is fixed, $$f(L, R)$$ will **monotonic and non-increasing** as $$R$$ increases.
+If $$L$$ is fixed, $$f(L, R)$$ is **non-increasing** as $$R$$ increases.
 
 Proof : As $$R$$ increases, each binary bit of $$f(L, R)$$ will only undergo one of these three changes :
 
@@ -12,7 +12,7 @@ Proof : As $$R$$ increases, each binary bit of $$f(L, R)$$ will only undergo one
 
 Since all values are non-negative, clearing bits cannot increase the value. 
 
-Thus, for a fixed $$L$$, $$f(L, R)$$ is non-increasing as $$R$$ increases.
+Thus, for a fixed $$L$$, $$f(L, R)$$ is **non-increasing** as $$R$$ increases.
 
 ---
 
@@ -22,13 +22,29 @@ For every query, consider **binary search**.
 
 <img width="1446" height="722" alt="image" src="https://github.com/user-attachments/assets/2a89c1d5-7a97-4e7b-8cf4-a732c3828bdb" />
 
-Assume that the answer must lie within the range $$[L, R]$$.
+Let $$L$$ be the fixed left endpoint of the query, and let $$[lo, hi]$$ be the current search range for the answer.
 
-Then we check whether $$f(L, mid)$$ is greater than or equal to $$k$$.
+If $$f(L, mid) \ge k$$, the answer will be within this range : $$[mid, n]$$, then we need update : $$lo \rightarrow mid$$.
 
-If $$f(L, mid) \ge k$$, the answer will be within this range : $$[mid, n]$$, then we need update : $$L \rightarrow mid$$.
+If $$f(L, mid) < k$$, the answer will be within this range : $$[L, mid - 1]$$, then we need update :  $$hi \rightarrow mid - 1$$.
 
-If $$f(L, mid) < k$$, the answer will be within this range : $$[L, mid - 1]$$, then we need update :  $$R \rightarrow mid - 1$$.
+```cpp
+int bs(int L) {
+    if (a[L] < k) {
+        return -1;
+    }
+    int lo = L, hi = n;
+    while (lo < hi) {
+        int mid = (lo + hi + 1) / 2; // ceil( (lo + hi) / 2 )
+        if (check(mid)) {
+            lo = mid;
+        } else {
+            hi = mid - 1;
+        }
+    }
+    return lo;
+}
+```
 
 ---
 
@@ -221,21 +237,21 @@ The time complexity for preprocessing is $$\mathcal{O}(N \log N)$$, and the time
 Consider a two-dimensional array like this :
 
 ```cpp
-int f[MAXN][LOGN];
+int st[MAXN][LOGN];
 ```
 
-The meaning of $$f_{i, j}$$ is : $$\displaystyle \max(A_i, A_{i + 1}, \cdots, A_{i + 2^j - 1})$$.
+The meaning of $$st_{i, j}$$ is : $$\displaystyle \max(A_i, A_{i + 1}, \cdots, A_{i + 2^j - 1})$$.
 
-Firstly, $$f_{i, 0} = a_i$$.
+Firstly, $$st_{i, 0} = a_i$$.
 
-If $$j \ne 0$$, $$f_{i, j} = \max(f_{i, j - 1}, f_{i + 2^{j - 1}, j - 1})$$
+If $$j \ne 0$$, $$st_{i, j} = \max(st_{i, j - 1}, st_{i + 2^{j - 1}, j - 1})$$
 
 The time complexity for preprocessing is $$\mathcal{O}(N \log N)$$.
 
 ```cpp
 void init() {
     for (int i = 1; i <= n; i++) {
-        f[i][0] = a[i];
+        st[i][0] = a[i];
     }
     /*
 
@@ -246,7 +262,7 @@ void init() {
     */
     for (int j = 1; (1 << j) <= n; j++) { // !!!
         for (int i = 1; i + (1 << j) - 1 <= n; i++) {
-            f[i][j] = max(f[i][j - 1], f[i + (1 << (j - 1))][j - 1]);
+            st[i][j] = max(st[i][j - 1], st[i + (1 << (j - 1))][j - 1]);
         }
     }
 }
@@ -264,7 +280,7 @@ int query(int L, int R) {
     int len = R - L + 1;
     for (int i = 0; len != 0; i++) {
         if (len % 2) {
-            res = max(res, f[L][i]);
+            res = max(res, st[L][i]);
             L += 1 << i;
         }
         len /= 2;
@@ -277,11 +293,11 @@ A more efficient solution is:
 
 Find two intervals of length $$\mathcal \lfloor \log_2 (R - L + 1) \rfloor$$, and merge them to obtain the answer.
 
-Specifically, suppose $$k$$ is equal to $$\mathcal \lfloor \log_2 (R - L + 1) \rfloor$$, 
+Let $$k = \lfloor \log_2(R-L+1) \rfloor$$.
 
-then the first interval is : an interval starting with $$L$$ and having a length of $$2^k$$. 
+Choose the two intervals $$[L,L+2^k-1]$$ and $$[R-2^k+1,R]$$.
 
-The second interval is: an interval ending with $$R$$ and having a length of $$2^k$$.
+Both intervals have length $$2^k$$, and their union is exactly $$[L,R]$$.
 
 <img width="1431" height="638" alt="image" src="https://github.com/user-attachments/assets/3b721eaa-9851-467d-86d5-db19ebff127d" />
 
@@ -289,7 +305,7 @@ The lengths of these two intervals are both no more than $$R - L + 1$$, but when
 
 This method has a time complexity of $$\mathcal{O}(1)$$ for answering each query.
 
-The operation must be associative and idempotent: $$x \circ x = x$$. 
+The operation must be associative and idempotent: $$(x \circ y) \circ z = x \circ (y \circ z)$$ ; $$x \circ x = x$$. 
 
 This ensures that overlapping elements do not affect the outcome.
 
@@ -311,29 +327,29 @@ Common operations that satisfy the requirement of repeatable contribution includ
 ```cpp
 int query(int L, int R) {
     int k = std::__lg(R - L + 1);
-    return std::max(f[L][k], f[R - (1 << k) + 1][k]);
+    return std::max(st[L][k], st[R - (1 << k) + 1][k]);
 }
 ```
 
 For [this problem](https://codeforces.com/contest/1878/problem/E), replace $$\max$$ with bitwise AND.
 
 ```cpp
-int a[N], f[N][LOGN];
+int a[N], st[N][LOGN];
 
 void init() {
     for (int i = 1; i <= n; i++) {
-        f[i][0] = a[i];
+        st[i][0] = a[i];
     }
 
     for (int j = 1; (1 << j) <= n; j++) {
         for (int i = 1; i + (1 << j) - 1 <= n; i++) {
-            f[i][j] = f[i][j - 1] & f[i + (1 << (j - 1))][j - 1];
+            st[i][j] = st[i][j - 1] & st[i + (1 << (j - 1))][j - 1];
         }
     }
 }
 
 int query(int L, int R) {
     int k = std::__lg(R - L + 1);
-    return f[L][k] & f[R - (1 << k) + 1][k];
+    return st[L][k] & st[R - (1 << k) + 1][k];
 }
 ```
