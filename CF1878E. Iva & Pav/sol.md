@@ -10,10 +10,9 @@ Proof : As $$R$$ increases, each binary bit of $$f(L, R)$$ will only undergo one
 
 - $$1 \rightarrow 1$$
 
-If we sum up each binary bit, then $$f(L, R)$$ will naturally be monotonic and non-increasing.
+Since all values are non-negative, clearing bits cannot increase the value. 
 
-What we need to do is find the position of the last $$1$$ in the sequence $$111111....1000....0$$.
-
+Thus, for a fixed $$L$$, $$f(L, R)$$ is non-increasing as $$R$$ increases.
 
 ---
 
@@ -284,9 +283,9 @@ The lengths of these two intervals are both no more than $$R - L + 1$$, but when
 
 This method has a time complexity of $$\mathcal{O}(1)$$ for answering each query.
 
-Like the aforementioned method, by combining two intervals, they will have an intersection. 
+The operation must be associative and idempotent: $$x \circ x = x$$. 
 
-It is necessary to ensure that the operation satisfies the "repeated contribution" condition.
+This ensures that overlapping elements do not affect the outcome.
 
 For example, $$\max(X, X, Y) = \max(X, Y)$$.
 
@@ -302,9 +301,34 @@ Common operations that satisfy the requirement of repeatable contribution includ
 
 - range bitwise OR.
 
+<img width="1431" height="638" alt="image" src="https://github.com/user-attachments/assets/3b721eaa-9851-467d-86d5-db19ebff127d" />
+
 ```cpp
 int query(int L, int R) {
     int k = std::__lg(R - L + 1);
     return std::max(f[L][k], f[R - (1 << k) + 1][k]);
+}
+```
+
+For [this problem](https://codeforces.com/contest/1878/problem/E), replace $$\max$$ with bitwise AND.
+
+```cpp
+int a[N], f[N][LOGN];
+
+void init() {
+    for (int i = 1; i <= n; i++) {
+        f[i][0] = a[i];
+    }
+
+    for (int j = 1; (1 << j) <= n; j++) {
+        for (int i = 1; i + (1 << j) - 1 <= n; i++) {
+            f[i][j] = f[i][j - 1] & f[i + (1 << (j - 1))][j - 1];
+        }
+    }
+}
+
+int query(int L, int R) {
+    int k = std::__lg(R - L + 1);
+    return f[L][k] & f[R - (1 << k) + 1][k];
 }
 ```
