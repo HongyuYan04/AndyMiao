@@ -283,6 +283,8 @@ then the first interval is : an interval starting with $$L$$ and having a length
 
 The second interval is: an interval ending with $$R$$ and having a length of $$2^k$$.
 
+<img width="1431" height="638" alt="image" src="https://github.com/user-attachments/assets/3b721eaa-9851-467d-86d5-db19ebff127d" />
+
 The lengths of these two intervals are both no more than $$R - L + 1$$, but when they are concatenated, the result will definitely be greater than $$R - L + 1$$.
 
 This method has a time complexity of $$\mathcal{O}(1)$$ for answering each query.
@@ -305,7 +307,6 @@ Common operations that satisfy the requirement of repeatable contribution includ
 
 - range bitwise OR.
 
-<img width="1431" height="638" alt="image" src="https://github.com/user-attachments/assets/3b721eaa-9851-467d-86d5-db19ebff127d" />
 
 ```cpp
 int query(int L, int R) {
